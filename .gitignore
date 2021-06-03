@@ -1,0 +1,6 @@
+# Project exclude paths
+/algorithms/target/
+/concurrency/target/
+/java-streams/target/
+/memory/target/
+/out/

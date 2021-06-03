@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/OCA/OCA.iml" filepath="$PROJECT_DIR$/OCA/OCA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/advancejavatutorial/advancejavatutorial.iml" filepath="$PROJECT_DIR$/advancejavatutorial/advancejavatutorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mcq/mcq.iml" filepath="$PROJECT_DIR$/mcq/mcq.iml" />
+    </modules>
+  </component>
+</project>

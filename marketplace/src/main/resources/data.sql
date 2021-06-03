@@ -1,0 +1,1 @@
+insert into BRAND values (1,'Nike'),(2,'Rebbok'),(3,'Addidas');
