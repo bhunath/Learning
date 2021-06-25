@@ -4,10 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class OptionalExample {
     public static void main(String[] args) {
-        optionalFlatMapExample();
+        optionalFlatMapExampleList();
         optionalStreamMethodIdiomExample();
     }
 
@@ -17,11 +18,12 @@ public class OptionalExample {
     private static void optionalStreamMethodIdiomExample() {
         System.out.println("optionalStreamMethodIdiomExample=================================================");
         List<String> strings = Arrays.asList("bhupendra", "shubhi", "sucheta");
-        List<String> collect = strings.stream().map(OptionalExample::isShubhiFound).flatMap(Optional::stream).collect(Collectors.toList());
+        final Stream<Optional<String>> optionalStream = strings.stream().map(OptionalExample::isShubhiFound);
+        List<String> collect = optionalStream.flatMap(Optional::stream).collect(Collectors.toList());
         System.out.println(collect);
     }
 
-    private static void optionalFlatMapExample() {
+    private static void optionalFlatMapExampleList() {
         System.out.println("optionalFlatMapExample=================================================");
         List<String> family = Arrays.asList("bhupendra", "shubhi", "sucheta");
         findS(family).flatMap(OptionalExample::isShubhiFound).ifPresent(System.out::println);

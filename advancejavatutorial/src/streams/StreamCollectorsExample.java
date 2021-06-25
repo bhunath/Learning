@@ -1,6 +1,7 @@
 package streams;
 
 import java.util.*;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
@@ -42,6 +43,7 @@ public class StreamCollectorsExample {
         IntSummaryStatistics summaryStatistics = familyLocal.collect(summarizingInt(String::length));
         System.out.println(summaryStatistics);
 
+
         title("Downstream Collectors 1.set");
         Map<String, Set<Locale>> groupByUsingDownStreamSet = Stream.of(Locale.getAvailableLocales()).collect(
                 groupingBy(Locale::getDisplayCountry, toSet())
@@ -52,6 +54,32 @@ public class StreamCollectorsExample {
                 filter(locale -> !isStringEmpty(locale.getDisplayCountry())).
                 collect(groupingBy(Locale::getDisplayCountry, counting()));
         System.out.println(countingDownStreamCollectors);
+
+        title("Downstrem Collectors 3.mapping");
+        Map<String, Set<String>> groupByCountry = Stream.of(Locale.getAvailableLocales()).
+                filter(locale -> !isStringEmpty(locale.getDisplayCountry())).
+                collect(groupingBy(Locale::getCountry, mapping(Locale::getDisplayLanguage, toSet())));
+        System.out.println(groupByCountry);
+
+        title("Collectors maxBy");
+        Optional<Locale> localWithMaxCountryName = Stream.of(Locale.getAvailableLocales()).collect(maxBy(Comparator.comparing(locale -> locale.getDisplayCountry().length())));
+        System.out.println(localWithMaxCountryName.get().getDisplayCountry());
+
+        title("Primitive int stream to array");
+        int[] ints = IntStream.of(0, 100).toArray();
+        System.out.println(ints);
+
+        title("Primitive int stream boxed to Object array");
+        Object[] objectArray = IntStream.of(0, 100).boxed().toArray();
+        System.out.println(objectArray);
+
+        title("Primitive int stream boxed to Typed array");
+        Integer[] integerTypedArray = IntStream.of(0, 100).boxed().toArray(Integer[]::new);
+        System.out.println(integerTypedArray);
+
+        title("Object Stream Max with Comparator ");
+        Optional<Locale> max = Stream.of(Locale.getAvailableLocales()).max(Comparator.comparing(locale -> locale.getDisplayCountry().length()));
+        System.out.println(max.get().getDisplayCountry());
 
     }
 
